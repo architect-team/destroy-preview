@@ -6,15 +6,15 @@ branding:
   color: orange
 
 inputs:
-  USERNAME:
+  username:
     required: true
-  PASSWORD:
+  password:
     required: true
-  ACCOUNT:
+  account:
     required: true
-  ENVIRONMENT:
+  environment:
     required: true
-  COMPONENT_NAME:
+  component_name:
     required: true
 
 runs:
@@ -22,9 +22,9 @@ runs:
   steps:
     - run: npm install -g @architect-io/cli@0.6.1
       shell: bash
-    - run: architect login -u ${{ inputs.USERNAME }} -p ${{ inputs.PASSWORD }}
+    - run: architect login -u ${{ inputs.username }} -p ${{ inputs.password }}
       shell: bash
-    - run: architect destroy --auto_approve -a ${{ inputs.ACCOUNT }} -e ${{ inputs.ENVIRONMENT }} -c ${{ inputs.COMPONENT_NAME }}:${{ inputs.ENVIRONMENT }}
+    - run: architect destroy --auto_approve -a ${{ inputs.account }} -e ${{ inputs.environment }} -c ${{ inputs.component_name }}:${{ inputs.environment }}
       shell: bash
-    - run: architect env:destroy --auto_approve ${{ inputs.ENVIRONMENT }} -a ${{ inputs.ACCOUNT }}
+    - run: architect env:destroy --auto_approve ${{ inputs.environment }} -a ${{ inputs.account }}
       shell: bash
