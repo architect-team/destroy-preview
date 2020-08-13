@@ -1,4 +1,4 @@
-name: Architect Destroy Environment
+name: Destroy Preview
 description: Easily destroy a deployed component and environment on the Architect Cloud
 author: architect-team
 branding:
