@@ -24,7 +24,7 @@ runs:
       shell: bash
     - run: architect login -u ${{ inputs.USERNAME }} -p ${{ inputs.PASSWORD }}
       shell: bash
-    - run: architect destroy --auto_approve -a ${{ inputs.ACCOUNT }} -e ${{ inputs.ENVIRONMENT }} -c ${{ inputs.COMPONENT_NAME }}
+    - run: architect destroy --auto_approve -a ${{ inputs.ACCOUNT }} -e ${{ inputs.ENVIRONMENT }} -c ${{ inputs.COMPONENT_NAME }}:${{ inputs.ENVIRONMENT }}
       shell: bash
     - run: architect env:destroy --auto_approve ${{ inputs.ENVIRONMENT }} -a ${{ inputs.ACCOUNT }}
       shell: bash
