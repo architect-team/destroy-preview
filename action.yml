@@ -2,8 +2,8 @@ name: Architect Destroy Environment
 description: Easily destroy a deployed component and environment on the Architect Cloud
 author: architect-team
 branding:
-  # icon: upload-cloud # TODO: change?
-  color: green
+  icon: cloud-off
+  color: orange
 
 inputs:
   USERNAME:
