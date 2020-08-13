@@ -1,27 +1,29 @@
 name: Architect Destroy Environment
+description: Easily destroy a deployed component and environment on the Architect Cloud
+author: architect-team
+branding:
+  # icon: upload-cloud # TODO: change?
+  color: green
 
-env:
-  ARCHITECT_USERNAME:
-  ARCHITECT_PASSWORD:
-  ARCHITECT_ACCOUNT:
+inputs:
+  USERNAME:
+    required: true
+  PASSWORD:
+    required: true
+  ACCOUNT:
+    required: true
+  ENVIRONMENT:
+    required: true
+  COMPONENT_NAME:
+    required: true
 
-on:
-  pull_request:
-    branches:
-      - master
-    types:
-      - closed
-
-jobs:
-  architect:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: format environment name
-        run: ::set-env name=ARCHITECT_ENVIRONMENT::"${$GITHUB_REF//\//-}"
-      - name: login
-        run: architect login -u $ARCHITECT_USERNAME -p $ARCHITECT_PASSWORD
-      - name: destroy preview
-        run: architect destroy -e $ARCHITECT_ENVIRONMENT -a $ARCHITECT_ACCOUNT --auto_approve
-      - name: destroy environment
-        run: architect environments:destroy $ARCHITECT_ENVIRONMENT --auto_approve
+runs:
+  using: 'composite'
+  steps:
+    - run: npm install -g @architect-io/cli@0.6.1
+      shell: bash
+    - run: architect login -u ${{ inputs.USERNAME }} -p ${{ inputs.PASSWORD }}
+      shell: bash
+    - run: architect destroy --auto_approve -a ${{ inputs.ACCOUNT }} -e ${{ inputs.ENVIRONMENT }} -c ${{ inputs.COMPONENT_NAME }}
+      shell: bash
+    - run: architect env:destroy --auto_approve ${{ inputs.ENVIRONMENT }} -a ${{ inputs.ACCOUNT }}
