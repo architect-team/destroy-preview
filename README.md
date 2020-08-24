@@ -44,7 +44,6 @@ jobs:
   architect_destroy_preview:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
     - name: Destroy Preview
       uses: architect-team/destroy-preview@v1.0.0
