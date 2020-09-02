@@ -5,7 +5,7 @@ Easily destroy an existing preview environment on the [Architect Cloud](https://
 Suggestions and issues can be posted on the [issues page](https://github.com/architect-team/destroy-preview/issues).
 
 [Inputs](#Inputs)
-* [username](#username)
+* [email](#email)
 * [password](#password)
 * [account](#account)
 * [environment](#environment)
@@ -13,9 +13,9 @@ Suggestions and issues can be posted on the [issues page](https://github.com/arc
 
 ## Inputs
 
-### `username`
+### `email`
 
-**Required** Username used to log in to the Architect Cloud
+**Required** Email used to log in to the Architect Cloud
 
 ### `password`
 
@@ -48,7 +48,7 @@ jobs:
     - name: Destroy Preview
       uses: architect-team/destroy-preview@v1.0.0
       with:
-        username: ${{ github.event.inputs.username }}
+        email: ${{ github.event.inputs.email }}
         password: ${{ secrets.PASSWORD }}
         account: ${{ github.event.inputs.account }}
         environment: ${{ github.event.inputs.environment }}
